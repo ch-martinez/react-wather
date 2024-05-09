@@ -5,6 +5,7 @@ export const SearchBar = ({handleSearch}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if(input == "" || !input) return
         handleSearch(input)
     }
 
