@@ -1,21 +1,36 @@
 import { useState } from "react"
 import { SearchBar } from "../components/SearchBar"
 import { Weather } from "../components/Weather"
-import { getWeatherDataFromAPI, test } from "../utils/weatherAPI"
+import { getWeatherDataFromAPI } from "../utils/weatherAPI"
 
 export const MainPage = () => {
-    const [city, setCity] = useState("")
-    const [weatherData, setWeatherData] = useState(test)
+    const [loading, setLoading] = useState(false)
+    const [show, setShow] = useState(false)
+    const [weatherData, setWeatherData] = useState(null)
 
     const handleSearch = async (input) => {
-        setCity(input)
-        getWeatherDataFromAPI(city).then(res => setWeatherData(res))
+        setLoading(true)
+        await getWeatherDataFromAPI(input)
+            .then((data) => {
+                setWeatherData(data)
+                setLoading(false)
+                setShow(true)
+            })
+            .catch((error) => {
+                console.log(error);
+                setLoading(false)
+                setShow(false)
+            })
     }
 
     return(
         <>
             <SearchBar handleSearch={handleSearch}/>
-            <Weather weatherData={weatherData}/>
+            <Weather
+                isLoading={loading}
+                showData={show}
+                weatherData={weatherData}
+            />
         </>
     )
 }
