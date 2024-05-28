@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { SearchBar } from "../components/SearchBar"
-import { Weather } from "../components/Weather"
+import { SearchBar } from "../components/SearchBar/SearchBar"
+import { Weather } from "../components/Weather/Weather"
 import { getWeatherDataFromAPI } from "../utils/weatherAPI"
 import { useParams } from "react-router-dom"
 

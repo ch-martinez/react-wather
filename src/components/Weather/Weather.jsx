@@ -1,7 +1,7 @@
 import { Location } from "./Location"
 import { Current } from "./Current"
 import { Forecast } from "./Forecast"
-import { Spinner } from "./Spinner"
+import { Spinner } from "../Spinner"
 
 export const Weather = ({isLoading, showData, weatherData}) => {
 
