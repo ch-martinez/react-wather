@@ -1,4 +1,4 @@
-import { ShowList } from "../components/favorites/ShowList"
+import { ShowList } from "../components/Favorites/ShowList"
 
 export const FavoritesPage = () => {
     return(

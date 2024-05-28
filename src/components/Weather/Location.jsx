@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import {generateHash, addFavorite, existFavorite} from '../utils/firebase'
+import {generateHash, addFavorite, existFavorite} from '../../utils/firebase'
 
 export const Location = ({location}) => {
     if (location != null){
