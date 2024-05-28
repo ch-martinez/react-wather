@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getCitiessAPI } from "../../utils/geoapifyAPI"
+import { useDebouncedCallback } from "use-debounce"
+import { set } from "firebase/database"
+
 
 export const SearchBar = ({handleSearch}) => {
     const [input, setInput] = useState("")
-    
+    const [cities, setCitiess] = useState([])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -12,19 +15,37 @@ export const SearchBar = ({handleSearch}) => {
         handleSearch(input)
     }
 
-    const handleInputCities = (e) => {
-        setInput(e.target.value)
-        getCitiessAPI(input)
+    const handleInputCities = useDebouncedCallback(async (input) => {
+        setCitiess([])
+        setInput(input)
+        
+        getCitiessAPI(input).then(city => {setCitiess(city)})
+    },750)
+
+    useEffect(() => {
+        if (input != "") handleInputCities(input)
+    }, [input])
+
+    const handlerClick = (e) => {
+        //console.log(JSON.stringify(e))
+        console.log(e);
     }
 
     return(
+        <>
         <form onSubmit={e => handleSubmit(e)}>
             <input
                 placeholder="Ingrese una ciudad..."
-                debounceTimeout={1000}
-                onChange={handleInputCities}
-            />
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                />
             <button type="submit">Buscar 🔍</button>
         </form>
+            <ul>
+                {cities.map((city) => (
+                    <li key={city.plus_code} onClick={() => handlerClick(city)}>{city.formatted_address}</li>
+                ))}
+            </ul>
+                </>
     )
 }
