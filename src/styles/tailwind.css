@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .article__detail{
+        @apply rounded-lg px-4 py-2 flex items-center gap-3 hover:bg-slate-200 transition-all
+    }
+    .article__icon{
+        @apply text-3xl
+    }
+
+    .article__text{
+        @apply flex flex-col
+    }
+
+    .article__title{
+        @apply font-semibold -mb-1
+    }
+
+    .container{
+        @apply w-full max-w-3xl mx-auto
+    }
+}
