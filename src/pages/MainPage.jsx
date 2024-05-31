@@ -44,13 +44,13 @@ export const MainPage = () => {
     }, []);
 
     return (
-        <>
+        <body className="container">
             <SearchBar handleSearch={handleSearch} />
             <Weather
                 isLoading={loading}
                 showData={show}
                 data={data}
             />
-        </>
+        </body>
     );
 };

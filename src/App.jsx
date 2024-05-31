@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 export const App = () => {
     return(
         <BrowserRouter>
-            <header className="w-screen-lg flex justify-center bg-white">
+            <header className="w-full bg-white">
                 <Navbar/>
             </header>
             <body className="max-w-screen-lg mx-auto">
