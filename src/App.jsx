@@ -7,13 +7,13 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 export const App = () => {
     return(
         <BrowserRouter>
-            <header>
+            <header className="w-screen-lg flex justify-center bg-white">
                 <Navbar/>
             </header>
-            <body>
+            <body className="max-w-screen-lg mx-auto">
                 <Routes>
                     <Route path="/" element={<MainPage/>} />
-                    <Route path="/:city" element={<MainPage/>} />
+                    <Route path="/weather" element={<MainPage/>} />
                     <Route path="/favorites" element={<FavoritesPage/>} />
                 </Routes>
             </body>
